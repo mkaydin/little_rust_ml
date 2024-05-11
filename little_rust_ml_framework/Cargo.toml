@@ -1,0 +1,8 @@
+[package]
+name = "little_rust_ml_framework"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tch = {version = "0.16.0", features = ["download-libtorch"]}
+serde = "*"
