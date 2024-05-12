@@ -1,6 +1,7 @@
 use std::{collections::HashMap};
 use tch::{Tensor, Kind, Device, vision, Scalar};
 
+// defining neural network 2 linear layer
 struct MyModel {
     l1: Linear,
     l2: Linear,
@@ -26,6 +27,7 @@ impl Compute for MyModel {
     }
 }
 
+// defining neural network layer, a linear layer
 trait Compute {
     fn forward (&self,  mem: &Memory, input: &Tensor) -> Tensor;
 }
@@ -54,6 +56,7 @@ impl Compute for Linear {
     }
 }
 
+// mean squared error and cross entropy loss function
 fn mse(target: &Tensor, pred: &Tensor) -> Tensor {
     (target - pred).square().mean(Kind::Float)
 }
@@ -63,6 +66,7 @@ fn cross_entropy (target: &Tensor, pred: &Tensor) -> Tensor {
     loss
 }
 
+// the tensor store memory
 struct Memory {
     size: usize,
     values: Vec<Tensor>,
@@ -124,6 +128,7 @@ impl Memory {
     }
 }
 
+// the training loop
 fn train<F>(mem: &mut Memory, x: &Tensor, y: &Tensor, model: &dyn Compute, epochs: i64, batch_size: i64, errfunc: F, learning_rate: f32)
     where F: Fn(&Tensor, &Tensor)-> Tensor
 {
@@ -143,6 +148,7 @@ fn train<F>(mem: &mut Memory, x: &Tensor, y: &Tensor, model: &dyn Compute, epoch
     }
 }
 
+// mini batching
 fn get_batches(x: &Tensor, y: &Tensor, batch_size: i64, shuffle: bool) -> impl Iterator<Item = (Tensor, Tensor)> {
     let num_rows = x.size()[0];
     let num_batches = (num_rows + batch_size - 1) / batch_size;
@@ -166,6 +172,7 @@ fn get_batches(x: &Tensor, y: &Tensor, batch_size: i64, shuffle: bool) -> impl I
     })
 }
 
+// load data set
 fn load_mnist() -> (Tensor, Tensor) {
     let m = vision::mnist::load_dir("data").unwrap();
     let x = m.train_images;
@@ -173,6 +180,7 @@ fn load_mnist() -> (Tensor, Tensor) {
     (x, y)
 }
 
+// calculate accuracy
 fn accuracy(target: &Tensor, pred: &Tensor) -> f64 {
     let yhat = pred.argmax(1,true).squeeze();
     let eq = target.eq_tensor(&yhat);
@@ -180,6 +188,7 @@ fn accuracy(target: &Tensor, pred: &Tensor) -> f64 {
     accuracy
 }
 
+// instanting and training neural network model
 fn main() {
     let (x, y) = load_mnist();
 
