@@ -2,8 +2,17 @@
 <module type="EMPTY_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/cnn_little_rust_ml/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/little_rust_ml_framework/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/ai-dataloader-main/benches" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/ai-dataloader-main/examples" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/ai-dataloader-main/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/ai-dataloader-main/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/data_loader/src" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/cnn_little_rust_ml/target" />
       <excludeFolder url="file://$MODULE_DIR$/little_rust_ml_framework/target" />
+      <excludeFolder url="file://$MODULE_DIR$/ai-dataloader-main/target" />
+      <excludeFolder url="file://$MODULE_DIR$/data_loader/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
