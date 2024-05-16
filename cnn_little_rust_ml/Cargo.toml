@@ -1,8 +1,0 @@
-[package]
-name = "cnn_little_rust_ml"
-version = "0.1.0"
-edition = "2021"
-
-[dependencies]
-tch = {version = "0.16.0", features = ["download-libtorch"]}
-serde = "*"
